@@ -1,0 +1,9 @@
+project: ctparse
+target: ct-fuzz
+testsuite:
+    - file://mayhem/testsuite
+
+cmds:
+  - cmd: /src/mayhem/fuzz_ct.py
+    libfuzzer: true
+    timeout: 8

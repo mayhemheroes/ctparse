@@ -1,0 +1,15 @@
+# Mayhem target: ctparse natural-language time expression parser (Atheris/libFuzzer harness).
+# The cmd binary is the compiled ELF launcher that drives mayhem/fuzz_ct.py; Atheris
+# instruments the ctparse library so the run records coverage (edges).
+project: ctparse
+target: ct-fuzz
+
+cmds:
+  - cmd: /mayhem/ct_fuzzer
+    libfuzzer: true
+    timeout: 8
+
+# Seed corpus of representative natural-language time expressions.
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/ct-fuzz/testsuite
